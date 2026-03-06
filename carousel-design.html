@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carousel Design - Dharmik Nanera</title>
+    <link rel="stylesheet" href="carousel-design.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="nav-logo">
+                    <h2>Dharmik</h2>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html#about" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html#work" class="nav-link">Work</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html#skills" class="nav-link">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html#pricing" class="nav-link">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html#contact" class="nav-link">Contact</a>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Work Gallery Section -->
+    <section class="work-gallery">
+        <div class="container">
+            <div class="gallery-header">
+                <h1>Carousel Design</h1>
+                <p>Designing engaging carousel posts that tell your brand story slide by slide.</p>
+                <a href="index.html#work" class="btn btn-secondary">← Back to Portfolio</a>
+            </div>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="assets/images/ca.jpg" alt="Carousel Design 1">
+                    <div class="gallery-overlay">
+                        <h4>Product Carousel Design</h4>
+                        <p>Sipping on sunshine and good health with these organic juices! 🍊🍇🍍</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-text">
+                    <p>&copy; 2026 Dharmik Nanera. All rights reserved.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="index.html#about">About</a>
+                    <a href="index.html#work">Work</a>
+                    <a href="index.html#skills">Skills</a>
+                    <a href="index.html#pricing">pricing</a>
+                    <a href="index.html#contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Gallery lightbox functionality
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        
+        galleryItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const img = this.querySelector('img');
+                const overlay = this.querySelector('.gallery-overlay');
+                const title = overlay.querySelector('h4').textContent;
+                const description = overlay.querySelector('p').textContent;
+                
+                // Create lightbox
+                const lightbox = document.createElement('div');
+                lightbox.className = 'lightbox';
+                lightbox.innerHTML = `
+                    <div class="lightbox-content">
+                        <span class="close-lightbox">&times;</span>
+                        <img src="${img.src}" alt="${img.alt}">
+                        <div class="lightbox-info">
+                            <h3>${title}</h3>
+                            <p>${description}</p>
+                        </div>
+                    </div>
+                `;
+                
+                document.body.appendChild(lightbox);
+                document.body.style.overflow = 'hidden';
+                
+                // Close lightbox
+                const closeBtn = lightbox.querySelector('.close-lightbox');
+                closeBtn.addEventListener('click', () => {
+                    document.body.removeChild(lightbox);
+                    document.body.style.overflow = 'auto';
+                });
+                
+                lightbox.addEventListener('click', (e) => {
+                    if (e.target === lightbox) {
+                        document.body.removeChild(lightbox);
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
